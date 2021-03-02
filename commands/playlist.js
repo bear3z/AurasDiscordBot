@@ -16,7 +16,6 @@ module.exports = {
         name: "playlist",
         description: "To play songs :D",
         usage: "<YouTube Playlist URL | Playlist Name>",
-        aliases: ["pl"],
     },
 
     async playingList(client, message, args) {
