@@ -6,7 +6,7 @@ module.exports = {
     name: "stop",
     description: "To stop the music and clearing the queue",
     usage: "",
-    aliases: [],
+    aliases: ["clear"],
   },
 
   run: async function (client, message, args) {

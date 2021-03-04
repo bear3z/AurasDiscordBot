@@ -14,11 +14,13 @@ module.exports = {
     if (serverQueue && !serverQueue.playing) {
       serverQueue.playing = true;
       serverQueue.connection.dispatcher.resume();
-      let xd = new MessageEmbed()
-      .setDescription("▶ Resumed the music for you!")
-      .setColor("YELLOW")
-      .setAuthor("Music has been Resumed!", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
-      return message.channel.send(xd);
+      let thing = new MessageEmbed()
+        .setDescription("▶ Resumed the music for you!")
+        .setColor("#ff93cc")
+        .setAuthor("Music has been Resumed!", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
+      return message.channel.send(thing).then(msg => {
+        msg.delete({ timeout: 5000 })
+      });
     }
     return sendError("There is nothing playing in this server.", message.channel);
   },

@@ -9,6 +9,8 @@ module.exports = {
     },
 
     run: async function(client, message, args){
+        message.channel.bulkDelete(1);
+        
         var allcmds = "";
 
         client.commands.forEach(cmd => {
@@ -31,11 +33,11 @@ module.exports = {
             .setTitle("Command: "+command.info.name+" info")
             .setColor("YELLOW")
             .setDescription(`
-Name: ${command.info.name}
-Description: ${command.info.description}
-Usage: \`\`${client.config.prefix}${command.info.name} ${command.info.usage}\`\`
-Aliases: ${command.info.aliases.join(", ")}
-`)
+                Name: ${command.info.name}
+                Description: ${command.info.description}
+                Usage: \`\`${client.config.prefix}${command.info.name} ${command.info.usage}\`\`
+                Aliases: ${command.info.aliases.join(", ")}
+            `)
             message.channel.send(commandinfo)
         }
     }

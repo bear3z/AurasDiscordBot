@@ -11,8 +11,10 @@ module.exports = {
 
     run: async function (client, message, args) {
         let channel = message.member.voice.channel;
-        if (!channel) return sendError("I'm sorry but you need to be in a voice channel!", message.channel);
-        if (!message.guild.me.voice.channel) return sendError("I Am Not In Any Voice Channel!", message.channel);
+        if (!channel)
+            return sendError("I'm sorry but you need to be in a voice channel!", message.channel);
+        if (!message.guild.me.voice.channel)
+            return sendError("I Am Not In Any Voice Channel!", message.channel);
 
         try {
             await message.guild.me.voice.channel.leave();
@@ -24,10 +26,10 @@ module.exports = {
         const Embed = new MessageEmbed()
             .setAuthor("Leave Voice Channel", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
             .setColor("GREEN")
-            .setTitle("Success")
             .setDescription("🎶 Left The Voice Channel.")
-            .setTimestamp();
-
-        return message.channel.send(Embed).catch(() => message.channel.send("🎶 Left The Voice Channel :C"));
+            .setTimestamp()
+        return message.channel.send(Embed).then(msg =>{
+            msg.delete({timeou: 5000});
+        });
     },
 };

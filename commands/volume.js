@@ -10,6 +10,9 @@ module.exports = {
   },
 
   run: async function (client, message, args) {
+
+    message.channel.bulkDelete(1);
+    
     const channel = message.member.voice.channel;
     if (!channel)
       return sendError("I'm sorry but you need to be in a voice channel to play music!", message.channel);

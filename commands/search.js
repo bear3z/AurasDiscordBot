@@ -68,8 +68,6 @@ module.exports = {
         const song = {
             id: songInfo.id,
             title: Util.escapeMarkdown(songInfo.title),
-            views: String(songInfo.views).padStart(10, " "),
-            ago: songInfo.uploadedAt,
             duration: songInfo.durationFormatted,
             url: `https://www.youtube.com/watch?v=${songInfo.id}`,
             img: songInfo.thumbnail.url,
@@ -137,13 +135,10 @@ module.exports = {
 
             dispatcher.setVolumeLogarithmic(queue.volume / 100);
             let thing = new MessageEmbed()
-                .setAuthor("Started Playing Music!", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
+                .setAuthor("Started Playing Music. oVo", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif", song.url)
                 .setThumbnail(song.img)
-                .setColor("BLUE")
-                .addField("Name", song.title, true)
-                .addField("Duration", song.duration, true)
-                .addField("Requested by", song.req.tag, true)
-                .setFooter(`Views: ${song.views} | ${song.ago}`);
+                .setColor("#b769c6")
+                .addField(song.title, `Requested by ${song.req.tag}`)
             queue.textChannel.send(thing);
         };
 

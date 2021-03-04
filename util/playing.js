@@ -2,6 +2,7 @@ const { Util, MessageEmbed } = require("discord.js");
 const ytdl = require("ytdl-core-discord");
 
 const sendError = require("./error");
+const sendMsg = require("./sms");
 
 module.exports = {
     async playing(client, message, song){
@@ -79,9 +80,7 @@ module.exports = {
                 reaction.users.remove(user).catch(console.error);
     
                 queue.connection.dispatcher.end();
-                queue.textChannel.send("Skip " + song.title + " oVo").then(msg => {
-                    msg.delete({ timeout: 10000}); 
-                }).catch(console.error);
+                sendError(`Skip ${song.title}. oVo`, message.channel).catch(console.error);
                 collector.stop();
                 break;
     
@@ -99,15 +98,7 @@ module.exports = {
             case "🔁":
                 reaction.users.remove(user).catch(console.error);
                 queue.loop = !queue.loop;
-                if (queue.loop) {
-                    queue.textChannel.send("Loop is on.").then( msg => {
-                        msg.delete({ timeout: 5000 })
-                    }).catch(console.error);
-                } else {
-                    queue.textChannel.send("Loop is off.").then( msg => {
-                        msg.delete({ timeout: 5000 })
-                    }).catch(console.error);
-                }
+                return sendMsg("GREEN", `🔁  **|**  Loop is **\`${serverQueue.loop === true ? "enabled" : "disabled"}\`**`, message.channel);
                 break;
     
             case "⏹":
