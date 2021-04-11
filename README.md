@@ -1,7 +1,7 @@
 # Aura's Discord Music Bot
 
 ## Introduction
-+ Aura is my girlfriend. She often uses music bot, but [Groovy](https://groovy.bot/) is too lag in Hsinchu.
++ Aura is my ~girl~friend, who is not quite over her exboyfriend. She often uses music bot, but [Groovy](https://groovy.bot/) is too lag in Hsinchu.
 
 ## Installation
 ```bash
